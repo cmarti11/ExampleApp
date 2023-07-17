@@ -1,8 +1,4 @@
-﻿using ExampleApp.Services;
-using ExampleApp.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace ExampleApp
 {
@@ -13,20 +9,9 @@ namespace ExampleApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            Startup.Initialize();
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
-        {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
-        }
     }
 }

@@ -26,9 +26,8 @@ namespace ExampleApp.ViewModels
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             if (ValidateFields())
             {
-                await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
             }
-
         }
 
         private bool ValidateFields()
