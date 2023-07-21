@@ -1,4 +1,5 @@
-﻿using ExampleApp.Views;
+﻿using ExampleApp.Resx;
+using ExampleApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,6 +28,13 @@ namespace ExampleApp.ViewModels
             if (ValidateFields())
             {
                 await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        AppResources.LoginPageInvalidLoginTitle,
+                        AppResources.LoginPageInvalidLoginTitleLoginPagLoginPageInvalidLoginMessage,
+                        AppResources.OkText);
             }
         }
 
