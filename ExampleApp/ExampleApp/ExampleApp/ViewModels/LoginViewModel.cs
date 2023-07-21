@@ -33,7 +33,7 @@ namespace ExampleApp.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert(
                         AppResources.LoginPageInvalidLoginTitle,
-                        AppResources.LoginPageInvalidLoginTitleLoginPagLoginPageInvalidLoginMessage,
+                        AppResources.LoginPageInvalidLoginMessage,
                         AppResources.OkText);
             }
         }
