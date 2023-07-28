@@ -7,7 +7,7 @@ namespace ExampleApp.Data.API
 {
     public interface IClientApi
     {
-        [Get("/Client")]
+        [Get("/Clients")]
         Task<IEnumerable<Client>> GetClients();
     }
 }

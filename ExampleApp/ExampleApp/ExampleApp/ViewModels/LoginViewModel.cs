@@ -1,14 +1,20 @@
 ﻿using ExampleApp.Resx;
+using ExampleApp.Services;
 using ExampleApp.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace ExampleApp.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        private readonly IAccountService _accountService;
+
+        public LoginViewModel(IAccountService accountService)
+        {
+            _accountService = accountService;
+            LoginCommand = new Command(OnLoginClicked);
+        }
+
         private string _username;
         private string _password;
 
@@ -17,15 +23,10 @@ namespace ExampleApp.ViewModels
 
         public Command LoginCommand { get; }
 
-        public LoginViewModel()
-        {
-            LoginCommand = new Command(OnLoginClicked);
-        }
-
         private async void OnLoginClicked(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            if (ValidateFields())
+            if (ValidateFields() && await _accountService.LoginAsync(UserName, Password))
             {
                 await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
             }
