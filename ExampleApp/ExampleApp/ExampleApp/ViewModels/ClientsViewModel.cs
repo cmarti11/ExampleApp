@@ -1,14 +1,9 @@
 ﻿using ExampleApp.Data.Models;
 using ExampleApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace ExampleApp.ViewModels
 {
@@ -27,7 +22,7 @@ namespace ExampleApp.ViewModels
 
 
         public ICommand AppearingCommand { get; set; }
-        
+
         private async Task OnAppearingAsync()
         {
             await LoadData();
@@ -44,13 +39,13 @@ namespace ExampleApp.ViewModels
                     Clients.ReplaceRange(clients);
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 var message = ex.Message;
             }
-            finally 
-            { 
-                IsBusy = false; 
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

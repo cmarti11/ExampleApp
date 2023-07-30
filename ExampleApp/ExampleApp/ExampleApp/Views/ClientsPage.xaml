@@ -5,8 +5,8 @@
              xmlns:models="clr-namespace:ExampleApp.Data.Models"
              xmlns:utility="clr-namespace:ExampleApp.Utilities"
              xmlns:controls="clr-namespace:ExampleApp.Controls"
-             utility:ViewModelLocator.AutoWireViewModel="True"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             utility:ViewModelLocator.AutoWireViewModel="True"
              x:DataType="viewModels:ClientsViewModel"
              x:Class="ExampleApp.Views.ClientsPage"
              Padding="10,10">
