@@ -11,7 +11,7 @@ namespace ExampleApp
         public AppShell()
         {
             InitializeComponent();
-            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            Routing.RegisterRoute(nameof(ClientPage), typeof(ClientPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

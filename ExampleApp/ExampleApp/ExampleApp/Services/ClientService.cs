@@ -1,4 +1,5 @@
 ﻿using ExampleApp.Data.API;
+using ExampleApp.Data.Dto;
 using ExampleApp.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,22 @@ namespace ExampleApp.Services
             _clientApi = clientApi;
         }
 
+        public async Task<ClientDetailDto> GetClient(long clientId)
+        {
+            var client = new ClientDetailDto();
+
+            try
+            {
+                client = await _clientApi.GetClient(clientId);
+                return client;
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+            return client;
+        }
+    
         public async Task<List<Client>> GetClients()
         {
             var clients = new List<Client>();
