@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace ExampleApp.ViewModels
 {
@@ -36,7 +37,7 @@ namespace ExampleApp.ViewModels
 
         private async Task LoadClient()
         {
-            if (ClientId < 0) 
+            if (ClientId < 0)
             {
                 return;
             }
@@ -50,9 +51,9 @@ namespace ExampleApp.ViewModels
             {
                 var message = ex.Message;
             }
-            finally 
-            { 
-                IsBusy = false; 
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

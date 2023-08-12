@@ -9,11 +9,27 @@ namespace ExampleApp.ViewModels
     public class BaseViewModel : ObservableObject
     {
 
-        bool isBusy = false;
+        bool isBusy;
         public bool IsBusy
         {
             get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            set 
+            {
+                if (SetProperty(ref isBusy, value))
+                    IsNotBusy = !isBusy;
+            }
+        }
+
+
+        bool isNotBusy = true;
+        public bool IsNotBusy
+        {
+            get => isNotBusy;
+            set
+            {
+                if (SetProperty(ref isNotBusy, value))
+                    IsBusy = !isNotBusy;
+            }
         }
 
         string title = string.Empty;
