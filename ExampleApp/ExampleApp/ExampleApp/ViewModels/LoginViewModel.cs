@@ -1,34 +1,43 @@
-﻿using ExampleApp.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ExampleApp.Resx;
+using ExampleApp.Services;
+using ExampleApp.Views;
 using Xamarin.Forms;
 
 namespace ExampleApp.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        private string _username;
-        private string _password;
+        private readonly IAccountService _accountService;
+
+        public LoginViewModel(IAccountService accountService)
+        {
+            _accountService = accountService;
+            LoginCommand = new Command(OnLoginClicked);
+        }
+
+        private string _username = string.Empty;
+        private string _password = string.Empty;
 
         public string UserName { get => _username; set => SetProperty(ref _username, value); }
         public string Password { get => _password; set => SetProperty(ref _password, value); }
 
         public Command LoginCommand { get; }
 
-        public LoginViewModel()
-        {
-            LoginCommand = new Command(OnLoginClicked);
-        }
-
         private async void OnLoginClicked(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            if (ValidateFields())
+            if (ValidateFields() && await _accountService.LoginAsync(UserName, Password))
             {
-                await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
             }
-
+            else
+            {
+                MessagingCenter.Send(this, "Fail");
+                await Application.Current.MainPage.DisplayAlert(
+                        AppResources.LoginPageInvalidLoginTitle,
+                        AppResources.LoginPageInvalidLoginMessage,
+                        AppResources.OkText);
+            }
         }
 
         private bool ValidateFields()
