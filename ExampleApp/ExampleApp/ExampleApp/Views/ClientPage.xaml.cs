@@ -23,7 +23,7 @@ namespace ExampleApp.Views
             if (e.PropertyName == nameof(ClientViewModel.Client) &&
                 _viewModel.Client.Latitude != default &&
                 _viewModel.Client.Longitude != default &&
-                string.IsNullOrEmpty(_viewModel.Client.Name))
+                !string.IsNullOrEmpty(_viewModel.Client.Name))
             {
                 var position = new Position(_viewModel.Client.Latitude, _viewModel.Client.Longitude);
                 ClientLocationMap.MoveToRegion(new MapSpan(position, 0.01, 0.01));
